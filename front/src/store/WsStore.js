@@ -22,7 +22,6 @@ class WsStore {
     }
     this._connectStatus = "Connecting";
 
-    console.log(`url=${this.url}`);
     this.sock = new WebSocket(this.url);
 
     this.sock.onopen = () => {
