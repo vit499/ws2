@@ -12,9 +12,9 @@ services:
     logging:
       options:
         max-size: 10m
-    # before run cmd:  docker network create dock-vv-network
+    # before run cmd:  docker network create v1-network
     networks:
-      - dock-vv-network
+      - v1-network
 
   mess_ws_api:
     build: ./back
@@ -29,8 +29,8 @@ services:
       options:
         max-size: 10m
     networks:
-      - dock-vv-network
+      - v1-network
 
 networks:
-  dock-vv-network:
+  v1-network:
     external: true
