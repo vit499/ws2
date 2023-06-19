@@ -1,0 +1,36 @@
+version: "3"
+
+services:
+  mess_ws_front:
+    build:
+      context: ./front
+      args:
+        API_URL: ${API_URL}
+    container_name: mess_ws_front
+    command: serve -s build -l 3008
+    restart: unless-stopped
+    logging:
+      options:
+        max-size: 10m
+    # before run cmd:  docker network create dock-vv-network
+    networks:
+      - dock-vv-network
+
+  mess_ws_api:
+    build: ./back
+    container_name: mess_ws_api
+    command: npm run start
+    restart: unless-stopped
+    environment:
+      - API_PORT=${API_PORT}
+    volumes:
+      - ./logs:/usr/src/app/logs
+    logging:
+      options:
+        max-size: 10m
+    networks:
+      - dock-vv-network
+
+networks:
+  dock-vv-network:
+    external: true
