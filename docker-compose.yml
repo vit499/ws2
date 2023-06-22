@@ -23,6 +23,8 @@ services:
     restart: unless-stopped
     environment:
       - API_PORT=${API_PORT}
+      - TOKEN=${TOKEN}
+      - CHAT=${CHAT}
     volumes:
       - ./logs:/usr/src/app/logs
     logging:
